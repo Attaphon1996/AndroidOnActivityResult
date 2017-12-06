@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -14,21 +16,22 @@ public class MainActivity extends AppCompatActivity {
     //public static final
 
     private Button button;
+    private EditText text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        text = (EditText) findViewById(R.id.editText);
         button = (Button) findViewById(R.id.button);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), AnotherActivity.class);
-                // putExtra to AnotherActivity
-                //i.putExtra("Value1", "This value one for AnotherActivity");
-                //i.putExtra("Value2", "This value two for AnotherActivity");
-
+                //putExtra to AnotherActivity
+                String Texts = text.getText().toString();
+                i.putExtra("Text", Texts);
                 // set the request code to any code you like, you can identify the callback via this code
                 startActivityForResult(i, REQUEST_CODE);
             }
